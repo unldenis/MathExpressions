@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "scanner.h": "c",
+        "token.h": "c",
+        "string.h": "c",
+        "type_traits": "c"
+    }
+}
