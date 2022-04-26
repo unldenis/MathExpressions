@@ -3,6 +3,9 @@
         "scanner.h": "c",
         "token.h": "c",
         "string.h": "c",
-        "type_traits": "c"
+        "type_traits": "c",
+        "compare": "c",
+        "ctype.h": "c",
+        "stdlib.h": "c"
     }
 }

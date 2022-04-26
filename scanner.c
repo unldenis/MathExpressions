@@ -8,7 +8,7 @@ scanner *initScanner (char *source) {
 
     s->data = source;
     s->current = 0;
-    s->tokenlist = initTokenList(10);
+    initTokenList (&s->list, 10);
     return s;
 }
 
@@ -34,7 +34,9 @@ void scanner_parse(scanner *s) {
             case '-':           
             case '*':      
             case '/': 
-                scanner_addToken(s, token_type_from_char(peekChar),  scanner_charToStr(peekChar), 0);
+            case '(': 
+            case ')':
+                scanner_addToken(s, token_type_from_char(peekChar), 0);
                 s->current++;
                 break;
 
@@ -54,10 +56,7 @@ void scanner_parse(scanner *s) {
                         peekChar = scanner_peek(s);
 
                     }        
-                    printf("Number: %d: ", number);
-                    scanner_addToken(s, TT_NUMBER, NULL, number);           
-                    printf("Added");
-                    printf("\n");
+                    scanner_addToken(s, TT_NUMBER, number);           
                 } else {
                     printf("Invalid character(%c) at index %d", peekChar, s->current);
                     exit(1);
@@ -68,26 +67,12 @@ void scanner_parse(scanner *s) {
 
 }
 
-void freeScanner (scanner *scanner) {
-    if (scanner != NULL) {
-        free (scanner->data);
-        freeTokenList(scanner->tokenlist);
-        free (scanner);
-    }
-}
 
 char scanner_peek(scanner *s) {
     return s->data[s->current];
 }
 
-void scanner_addToken(scanner *s, tokentype type, char *v, int intval) {
-    struct token* tk = initToken (type, v, intval);
-    insertToken(s->tokenlist, tk);
-}
-
-char* scanner_charToStr(char c) {
-    char *ptr = malloc(2 * sizeof(char));
-    ptr[0] = c;
-    ptr[1] = '\0';
-    return ptr;
+void scanner_addToken(scanner *s, tokentype type, int intval) {
+    struct token * tmp = initToken(type, intval);
+    insertTokenList(&s->list, tmp);
 }

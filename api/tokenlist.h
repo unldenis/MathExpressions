@@ -6,14 +6,14 @@
 #include <stdio.h>
 
 typedef struct {
-  struct token **array;
+  struct token *array;
   size_t used;
   size_t size;
 } tokenlist;
 
-tokenlist * initTokenList(size_t initialSize);
+void initTokenList(tokenlist *a, size_t initialSize);
 
-void insertToken(tokenlist *a, struct token *element);
+void insertTokenList(tokenlist *a, struct token *element);
 
 void freeTokenList(tokenlist *a);
 

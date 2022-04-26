@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "api/scanner.h"
+#include "api/parser.h"
 
 char *inputString(FILE* fp, size_t size);
 
@@ -8,7 +8,7 @@ int main() {
 
     char *m;
 
-    printf("input string : ");
+    printf("> ");
     m = inputString(stdin, 10);
 
     
@@ -18,8 +18,23 @@ int main() {
 
         scanner_parse(sc);
 
-        freeScanner(sc);
 
+        parser* pars = initParser(sc);
+
+        for(int i=0; i < pars->list->used; i++) {
+            token_debug(&pars->list->array[i]);
+        }
+
+
+        printf("Risultato: %lf\n", parser_parse(pars));
+
+
+        // free char* string
+        free(m);
+        // free scanner
+        free(sc);
+        // free parser
+        freeParser(pars);
     }
     
     // close

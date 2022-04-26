@@ -18,16 +18,17 @@ typedef enum {
 
 struct token {
 
-    int tokentype;
-    char *value;
+    tokentype tokentype;
     int intvalue;
 
 };
 
-struct token *initToken (tokentype type, char *v, int intvalue);
-
-void freeToken (struct token *token);
+struct token * initToken(tokentype type, int value);
 
 tokentype token_type_from_char(char c);
+
+void token_debug(struct token * t);
+
+const char* token_getTokenTypeName(tokentype type);
 
 #endif
