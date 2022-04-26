@@ -7,7 +7,6 @@ char *inputString(FILE* fp, size_t size);
 int main() {
 
     printf("> ");
-
     char *m;
     m = inputString(stdin, 10);
 
