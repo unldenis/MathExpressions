@@ -13,6 +13,6 @@ At the moment it allows these operations:
 - Decimal numbers
 
 ## Usage
-To run, just run main.exe in Windows.
-Otherwise just compile the files and run main.c.
+To run, just run main.exe in Windows. <br>
+Otherwise just compile the files and run main.c. <br>
 ![photo_2022-04-26_17-51-17](https://user-images.githubusercontent.com/80055679/165343044-2aaf9c79-3fd0-4052-8a6c-0e33afd0cb89.jpg)
