@@ -6,27 +6,25 @@ char *inputString(FILE* fp, size_t size);
 
 int main() {
 
-    char *m;
-
     printf("> ");
+
+    char *m;
     m = inputString(stdin, 10);
 
-    
     scanner* sc = initScanner(m);
     if(sc != NULL) {
-        //printf("Data: %s\n", sc->data);
-
         scanner_parse(sc);
-
-
         parser* pars = initParser(sc);
 
+        /*
+        Debug tokens
         for(int i=0; i < pars->list->used; i++) {
             token_debug(&pars->list->array[i]);
         }
+        */
 
-
-        printf("Result: %lf\n", parser_parse(pars));
+        double result = parser_parse(pars);
+        printf("Result: %lf\n", result);
 
 
         // free char* string
@@ -37,9 +35,10 @@ int main() {
         freeParser(pars);
     }
     
-
     // close
-    printf("Program Ended\n");
+    printf("Press ENTER a few times to terminate the program");
+    fflush(stdout);
+    getchar(); getchar(); getchar(); getchar();
     return 0;
 }
 
