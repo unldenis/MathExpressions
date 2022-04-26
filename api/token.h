@@ -19,11 +19,11 @@ typedef enum {
 struct token {
 
     tokentype tokentype;
-    int intvalue;
+    double value;
 
 };
 
-struct token * initToken(tokentype type, int value);
+struct token * initToken(tokentype type, double value);
 
 tokentype token_type_from_char(char c);
 

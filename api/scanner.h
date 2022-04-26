@@ -17,6 +17,6 @@ void scanner_parse(scanner *s);
 
 char scanner_peek(scanner *s);
 
-void scanner_addToken(scanner *s, tokentype type, int intval);
+void scanner_addToken(scanner *s, tokentype type, double value);
 
 #endif

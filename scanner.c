@@ -1,5 +1,6 @@
 #include "api/scanner.h"
 #include <ctype.h>  //isdigit
+#include <math.h>  //pow
 
 scanner *initScanner (char *source) {
     scanner *s = (scanner *) malloc (sizeof (scanner));
@@ -45,17 +46,34 @@ void scanner_parse(scanner *s) {
                 if(isdigit(peekChar)) {
 
                     int index = 0;
-                    int number = 0;
+                    double number = 0;
                     while(isdigit(peekChar)) {
                         int tmp = peekChar - '0'; 
                         number = number * 10 + tmp;
 
-                        //next
                         index++;
+                        // next
+                        s->current++;
+                        peekChar = scanner_peek(s);
+                    }
+
+                    if(peekChar == '.') {
+                        index = -1;
+                        // next
                         s->current++;
                         peekChar = scanner_peek(s);
 
-                    }        
+                        while(isdigit(peekChar)) {
+                            int tmp = peekChar - '0'; 
+                            number += pow(10, index) * tmp;
+
+                            index--;
+                            // next
+                            s->current++;
+                            peekChar = scanner_peek(s);
+                        }
+                    }
+
                     scanner_addToken(s, TT_NUMBER, number);           
                 } else {
                     printf("Invalid character(%c) at index %d", peekChar, s->current);
@@ -72,7 +90,7 @@ char scanner_peek(scanner *s) {
     return s->data[s->current];
 }
 
-void scanner_addToken(scanner *s, tokentype type, int intval) {
-    struct token * tmp = initToken(type, intval);
+void scanner_addToken(scanner *s, tokentype type, double value) {
+    struct token * tmp = initToken(type, value);
     insertTokenList(&s->list, tmp);
 }

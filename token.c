@@ -1,9 +1,9 @@
 #include "api/token.h"
 
-struct token * initToken(tokentype type, int value) {
+struct token * initToken(tokentype type, double value) {
     struct token * tmp = malloc (sizeof (struct token));
     tmp->tokentype = type;
-    tmp->intvalue = value;
+    tmp->value = value;
     return tmp;
 }
 
@@ -31,7 +31,7 @@ tokentype token_type_from_char(char c) {
 void token_debug(struct token *t) {
     char szBuffer[50];
     if(t->tokentype == TT_NUMBER) {
-        snprintf(szBuffer, sizeof(szBuffer), "Token {type='Number', value='%d'}", t->intvalue);
+        snprintf(szBuffer, sizeof(szBuffer), "Token {type='Number', value='%lf'}", t->value);
     } else {
         snprintf(szBuffer, sizeof(szBuffer), "Token {type='%s'}", token_getTokenTypeName(t->tokentype));
     }

@@ -18,7 +18,7 @@ void insertTokenList(tokenlist *a, struct token *element) {
 
   struct token *tmp = &a->array[a->used++];
   tmp->tokentype = element->tokentype;
-  tmp->intvalue = element->intvalue;
+  tmp->value = element->value;
 
   // Free token
   free(element);

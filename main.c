@@ -26,7 +26,7 @@ int main() {
         }
 
 
-        printf("Risultato: %lf\n", parser_parse(pars));
+        printf("Result: %lf\n", parser_parse(pars));
 
 
         // free char* string
@@ -37,6 +37,7 @@ int main() {
         freeParser(pars);
     }
     
+
     // close
     printf("Program Ended\n");
     return 0;

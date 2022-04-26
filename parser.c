@@ -43,7 +43,7 @@ double parser_parsePrimary(parser * p) {
         printf("Number expected at %d but found %s.", p->index - 1, token_getTokenTypeName(t->tokentype));
         exit(1);
     }
-    return (double) t->intvalue;
+    return t->value;
 }
 
 
